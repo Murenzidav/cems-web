@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Public_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,8 +9,9 @@ import Analytics from "@/components/Analytics";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
 
-const serif = Playfair_Display({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-serif", display: "swap" });
-const body = Public_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-body", display: "swap" });
+// Fonts are self-hosted (Latin variable files from Google Fonts, SIL Open Font License) so builds never depend on fetching them.
+const serif = localFont({ src: "./fonts/playfair-display.woff2", weight: "400 600", variable: "--font-serif", display: "swap" });
+const body = localFont({ src: "./fonts/public-sans.woff2", weight: "400 700", variable: "--font-body", display: "swap" });
 
 const title = `${site.name} | Civil Engineering & Construction Company in Kigali, Rwanda`;
 
