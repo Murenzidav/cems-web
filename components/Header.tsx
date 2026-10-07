@@ -24,7 +24,7 @@ export default function Header() {
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -50,32 +50,21 @@ export default function Header() {
   const cur = (href: string) => ((href === "/" ? pathname === "/" : pathname.startsWith(href)) ? "page" : undefined);
 
   return (
-    <>
-      <div className="topbar">
-        <div className="wrap topbar-in">
-          <span><Icon name="pin" size={15} />{site.street}, {site.area}, {site.city}</span>
-          <span className="topbar-right">
-            <a href={site.phoneHref}><Icon name="phone" size={15} />{site.phone}</a>
-            <a href={`mailto:${site.email}`}><Icon name="mail" size={15} />{site.email}</a>
-          </span>
-        </div>
+    <header className={`site-header${scrolled || open ? " solid" : ""}${open ? " menu-open" : ""}`}>
+      <div className="wrap bar">
+        <Link href="/" className="brand" aria-label={`${site.name} home`}>
+          <Image src={site.logoLight} alt={`${site.name}, ${site.full}`} width={800} height={374} className="logo-img" sizes="140px" priority />
+        </Link>
+        <nav id="main-nav" ref={nav} className="nav" aria-label="Main">
+          {links.map((l) => (
+            <Link key={l.href} href={l.href} aria-current={cur(l.href)}>{l.label}</Link>
+          ))}
+          <Link href="/contact#quote" className="btn btn-primary btn-sm nav-cta">Request a Quote</Link>
+        </nav>
+        <button ref={btn} className="menu-btn" aria-expanded={open} aria-controls="main-nav" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((o) => !o)}>
+          <Icon name={open ? "close" : "menu"} size={26} />
+        </button>
       </div>
-      <header className={`site-header${scrolled ? " scrolled" : ""}${open ? " menu-open" : ""}`}>
-        <div className="wrap bar">
-          <Link href="/" className="brand" aria-label={`${site.name} home`}>
-            <Image src={site.logo} alt={`${site.name}, ${site.full}`} width={1560} height={730} className="logo-img" sizes="130px" priority />
-          </Link>
-          <nav id="main-nav" ref={nav} className="nav" aria-label="Main">
-            {links.map((l) => (
-              <Link key={l.href} href={l.href} aria-current={cur(l.href)}>{l.label}</Link>
-            ))}
-            <Link href="/contact#quote" className="btn btn-primary nav-cta">Request a Quote</Link>
-          </nav>
-          <button ref={btn} className="menu-btn" aria-expanded={open} aria-controls="main-nav" aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((o) => !o)}>
-            <Icon name={open ? "close" : "menu"} size={26} />
-          </button>
-        </div>
-      </header>
-    </>
+    </header>
   );
 }

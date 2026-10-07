@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Icon from "./Icon";
 import { site } from "@/content/site";
@@ -8,8 +9,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="wrap fcols">
         <div className="fbrand">
-          <p className="fname">{site.name}</p>
-          <p className="ffull">{site.full}</p>
+          <Link href="/" className="flogo" aria-label={`${site.name} home`}>
+            <Image src={site.logoLight} alt={`${site.name}, ${site.full}`} width={800} height={374} sizes="180px" />
+          </Link>
           <p>Civil engineering and construction company in Kigali, delivering buildings, roads and infrastructure, wastewater treatment systems and construction materials.</p>
           {site.social.length > 0 && (
             <ul className="social">

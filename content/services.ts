@@ -10,11 +10,14 @@ export type Service = {
   intro: string;
   points: string[];
   image?: { src: string; alt: string };
+  /** Background photo for the service tile (decorative). */
+  tile: string;
 };
 
 export const services: Service[] = [
   {
     slug: "building-construction",
+    tile: "/images/site-blockwork.jpg",
     title: "Building Construction & Design",
     label: "Construction",
     icon: "building",
@@ -25,6 +28,7 @@ export const services: Service[] = [
   },
   {
     slug: "rehabilitation-maintenance",
+    tile: "/images/site-road-grading.jpg",
     title: "Infrastructure Construction, Rehabilitation & Maintenance",
     label: "Infrastructure",
     icon: "road",
@@ -35,6 +39,7 @@ export const services: Service[] = [
   },
   {
     slug: "wastewater-treatment",
+    tile: "/images/site-drainage.jpg",
     title: "Wastewater Treatment",
     label: "Wastewater Treatment",
     icon: "water",
@@ -44,6 +49,7 @@ export const services: Service[] = [
   },
   {
     slug: "construction-materials",
+    tile: "/images/site-steel-install.jpg",
     title: "Construction Materials",
     label: "Construction Materials",
     icon: "bricks",

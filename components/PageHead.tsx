@@ -1,10 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 
 type Crumb = { href: string; label: string };
 
-export default function PageHead({ title, text, eyebrow, crumbs = [] }: { title: string; text?: string; eyebrow?: string; crumbs?: Crumb[] }) {
+export default function PageHead({ title, text, eyebrow, crumbs = [], image = "/images/site-structure-wide.jpg" }: {
+  title: string; text?: string; eyebrow?: string; crumbs?: Crumb[]; image?: string;
+}) {
   return (
     <div className="pagehead">
+      <Image src={image} alt="" fill priority sizes="100vw" className="ph-img" />
       <div className="wrap">
         <nav aria-label="Breadcrumb" className="crumbs">
           <ol>

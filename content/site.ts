@@ -16,6 +16,8 @@ export const site = {
   mapQuery: "KK 8 Avenue, Kicukiro, Kigali, Rwanda",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.cemsltd.rw",
   logo: "/images/cems-logo.jpg",
+  /** Logo with white lettering on a transparent background, for dark backgrounds. */
+  logoLight: "/images/cems-logo-light.png",
   // Add social links here when you have them, e.g. { label: "LinkedIn", href: "https://..." }
   social: [] as { label: string; href: string }[],
 };
